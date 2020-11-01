@@ -1,0 +1,49 @@
+Zad 3.1
+x = 2; y=3;
+if(x > y):
+    result = x;
+else:
+    result = y;
+Podany kod wykonuje się , lecz bledem jest konczenie
+definiowania wartosci x i y średnikiem na końcu (powinna byc NOWA LINIA). W if nie powinien być nawias, ale moze tak być.
+
+**************************************************************************
+Przyklad 2:
+for i in "qwerty": if ord(i) < 100: print (i)
+Podany kod nie jest poprawny. Każda instrukcja powinna zaczynać sie od nowej lini z tab'em zaczynającym.
+W ten sposób:
+for i in "qwerty":
+	if ord(i) < 100:
+		print(i)    ,wtedy wyżej wyeminiony kod bedzie działał.
+**************************************************************************
+Przyklad 3:
+for i in "axby": print (ord(i) if ord(i) < 100 else i)
+Kod działa i jest poprawny, jedynie dla czytelności kodu możnaby rozdzielić go na nowe linie.
+**************************************************************************
+######Zad 3.2########
+L = [3, 5, 4] ; L = L.sort()
+Do L nie zostaje nic przypisane, bo sort() wykonuje operacje na danej liscie, ale nie zwraca zadnej wartosci ktora mozna zpaisac do jakiejś zmiennej. Mozna jedynie wykonać funkcje na danym obiekcie. Instrukcje w jednej linii.
+*********************************************************************s*****
+Przyklad 2:
+x, y = 1, 2, 3
+Niepoprawne pod wieloma wzgledami:
+- chec przypisania wielu wartosci do jednej zmiennej
+- x wolny bez przypisania do niego zadnej wartosci
+- przecinek pomiedzy x i y który tez jest bledem
+***************************************************************************
+Przyklad 3:
+X = 1, 2, 3 ; X[1] = 4
+X to krotka, po jej ustalaniu nie mozna zmianiać ich wartosci jak np.: w tablicy.
+Bez srednika powinno byc
+***************************************************************************
+Przyklad 4:
+X = [1, 2, 3] ; X[3] = 4
+Odwołanie się do pozycji 3 listy -nie istnieje ,liczymy od 0 takze wywołujemy spoza listy, co jest bledem.
+**************************************************************************
+Przyklad 5:
+X = "abc" ; X.append("d")
+X jest napisam nie lista, append nie moze byc uzyte
+*************************************************************************
+Przyklad 6:
+L = list(map(pow, range(8)))
+Niepoprawne uzycie funkcji pow
