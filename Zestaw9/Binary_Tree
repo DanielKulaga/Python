@@ -1,0 +1,45 @@
+import unittest
+
+class Node:
+    """Klasa reprezentująca węzeł drzewa binarnego."""
+
+    def __init__(self, data=None, left=None, right=None):
+        self.data = data
+        self.left = left
+        self.right = right
+
+    def __str__(self):
+        return str(self.data)
+
+def count_total(top):
+    if top is None:
+        return 0
+    else:
+        return top.data + count_total(top.left) + count_total(top.right)
+
+def count_leafs(top):
+    if top is None:
+        return 0
+    if top.left is None and top.right is None:
+        return 1
+    return count_leafs(top.left) + count_leafs(top.right)
+
+
+class MyTestCase(unittest.TestCase):
+    def setUp(self):
+        self.root = Node(1)
+        self.root.left = Node(2)
+        self.root.right = Node(3)
+        self.root.left.left = Node(4)
+        self.root.left.left.left = Node(5)
+        self.root.right.left = Node(6)
+
+
+    def test_count_leafs(self):
+        self.assertEqual(count_leafs(self.root), 2)
+
+    def test_count_total(self):
+        self.assertEqual(count_total(self.root), 21)
+
+if __name__ == '__main__':
+    unittest.main()
