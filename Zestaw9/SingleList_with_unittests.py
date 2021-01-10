@@ -1,5 +1,5 @@
 import unittest
-
+#zad 9.1
 class Node:
     """Klasa reprezentująca węzeł listy jednokierunkowej."""
 
@@ -55,21 +55,21 @@ class SingleList:
 
         def remove_tail(self): # klasy O(N)
             # Zwraca cały węzeł, skraca listę.
-
             if self.is_empty():
-                raise ValueError("Pusta lista")
+                raise ValueError("pusta lista")
             node = self.tail
-            if self.head == self.tail:
-                self.head = None
-                self.tail = None
+            if self.head == self.tail:  # self.length == 1
+                self.head = self.tail = None
             else:
-                while self.head.next.next != None:
-                    self.head = self.head.next
-                self.head.next = None
-                self.tail = self.head
-                node.next = None
-                self.length -= 1
+                temp = self.head
+                while temp.next.next is not None:
+                    temp = temp.next
+                self.tail = temp
+                self.tail.next = None
+            node.next = None
+            self.length -= 1
             return node
+
 
         def merge(self, other):
             # klasy O(1)
@@ -86,6 +86,8 @@ class SingleList:
                 self.tail = other.tail
                 self.tail.next = None
                 self.length = self.length + other.length
+            other = None
+
 
         def clear(self): #czyszczenie tablicy
             """temp = self.head
@@ -103,19 +105,21 @@ class MyTestCase(unittest.TestCase):
         self.empty_list = SingleList()
 
         self.list1 = SingleList()
-        self.list1.insert_head(Node(1))  # [1]
-        self.list1.insert_head(Node(2))  # [2, 1]
-        self.list1.insert_tail(Node(3))  # [2, 1, 3]
-        self.list1.insert_tail(Node(6))  # [2, 1, 3, 6]
-        self.list1.insert_tail(Node(9))  # [2, 1, 3, 6, 9]
-        self.list1.insert_tail(Node(10))  # [2, 1, 3, 6, 9, 10]
-        self.list1.insert_head(Node(100))  # [100, 2, 1, 3, 6, 9, 10]
+        self.list1.insert_head(Node(1))
+        self.list1.insert_head(Node(2))
+        self.list1.insert_tail(Node(3))
+        self.list1.insert_tail(Node(6))
+        self.list1.insert_tail(Node(9))
+        self.list1.insert_tail(Node(10))
+        self.list1.insert_head(Node(100))
+        # Tak wyglada lista po powyższych operacjach: [100, 2, 1, 3, 6, 9, 10]
 
         self.list2 = SingleList()
-        self.list2.insert_head(Node(0)) # [0]
-        self.list2.insert_head(Node(1)) # [1, 0]
-        self.list2.insert_head(Node(2)) # [2, 1, 0]
-        self.list2.insert_head(Node(3)) # [3, 2, 1, 0]
+        self.list2.insert_head(Node(0))
+        self.list2.insert_head(Node(1))
+        self.list2.insert_head(Node(2))
+        self.list2.insert_head(Node(3))
+        #Tak wyglada lista po powyższych operacjach: [3, 2, 1, 0]
 
     def test_remove_tail(self):
         self.assertEqual(self.list1.remove_tail().data, 10)
