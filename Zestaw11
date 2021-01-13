@@ -1,0 +1,53 @@
+''' Opis algorytmu sortującego:
+HEAP SORT
+Tworzymy kopiec i sprawdzamy czy warunek kopca, czyli najwiekszy element jako korzen jest cały czas zachowany.
+usuwamy korzeń i wstawiamy na ostatnią pozycję tablicy. W puste miejsce, które zostało po korzeniu
+wstawiamy ostatni element z kopca. Przywracamy warunek kopca i tak do końca zawartości kopca akcja zaczyna sie od początku.
+
+
+'''
+
+def left(i):
+    return 2 * i + 1
+
+
+def right(i):
+    return 2 * i + 2
+
+def max_heapify(A, n, i):
+    l = left(i)
+    r = right(i)
+    if l < n and A[l] > A[i]:
+        largest = l
+    else:
+        largest = i
+    if r < n and A[r] > A[largest]:
+        largest = r
+    if largest != i:
+        A[i], A[largest] = A[largest], A[i]
+        max_heapify(A, n, largest)
+
+
+def build_max_heap(A):
+    n = len(A)
+    for i in range(n, -1, -1):
+        max_heapify(A, n, i)
+    for i in range(n-1, 0, -1):
+        A[0], A[i] = A[i], A[0]
+        max_heapify(A, i, 0)
+
+
+A = [3, 5, 7, 4, 8, 9, 20]
+B = [3, 4, 5, 7, 8, 9, 20]
+build_max_heap(A)
+
+print(A)
+print(B)
+
+
+
+
+
+
+
+
