@@ -1,0 +1,38 @@
+"""Wyszukiwanie binarne rekurencyjne"""
+
+import unittest
+
+def binarne_rek(List, left, right, element):
+    """Wyszukiwanie binarne w wersji rekurencyjnej."""
+    half = (left + right) // 2
+    if element > List[half]:
+        left = half + 1
+    else:
+        right = half - 1
+    if left > right:
+        return None
+    if element == List[half]:
+        return half
+
+    return binarne_rek(List, left, right, element)
+
+
+class TestBinarneRek(unittest.TestCase):
+
+    def setUp(self):
+        self.List_of_numbers = [1, 2, 50, 6, 7, 100, 38, 90, 12000]
+        self.size = len(self.List_of_numbers)
+
+    def test_binarne_rek(self):
+        self.assertEqual(binarne_rek(self.List_of_numbers, 0, self.size - 1, 2), 1)
+        self.assertEqual(binarne_rek(self.List_of_numbers, 0, self.size - 1, 50), 2)
+        self.assertEqual(binarne_rek(self.List_of_numbers, 0, self.size - 1, 100), 5)
+        self.assertEqual(binarne_rek(self.List_of_numbers, 0, self.size - 1, 90), 8)
+        self.assertEqual(binarne_rek(self.List_of_numbers, 6, 2, 90), None)
+
+    def tearDown(self):
+        pass
+
+
+if __name__ == '__main__':
+    unittest.main()
