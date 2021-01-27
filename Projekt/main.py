@@ -141,7 +141,7 @@ class Graph:
         numOfVerticles = self.graph_size()
 
         mst = Graph()
-        # key values used to pick minimum weight edge in cut
+        
         visited = dict()
         for n in self.list_nodes():
             visited[n] = False
