@@ -10,7 +10,6 @@ class PriorityQueue:
     def enqueue(self, item: Edge):
         """Metoda dodająca element do kolejki priorytetowej"""
         heappush(self.queue, item)
-        #item.set_queue(self)
         return self
 
 

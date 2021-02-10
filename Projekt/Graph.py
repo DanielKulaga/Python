@@ -63,7 +63,7 @@ class Graph:
         visited = dict()
         for n in self.list_nodes():
             visited[n] = False
-       #Zmiana wartosci w odwiedzonej (wybranej przez usera)
+        #Zmiana wartosci w odwiedzonej (wybranej przez usera)
         visited[selected_node] = True
         Edges = PriorityQueue()
         #generuje krawedzie ktore wychodza z danego wierzcholka
@@ -80,6 +80,7 @@ class Graph:
                 visited[queue_item.end_node] = True
 
                 edges_in_node = self.generator_node_edges(queue_item.end_node)
+
                 for edge in edges_in_node:
                     Edges.enqueue(Edge(edge[0], edge[1], edge[2]))
 

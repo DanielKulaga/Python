@@ -5,7 +5,7 @@ class Edge:
         self.start_node = start_node
         self.end_node = end_node
         self.weight = weight
-        self.queue = None
+
 
     def __repr__(self):
         """Reprezentacja krawędzi"""
@@ -19,6 +19,5 @@ class Edge:
         """Porównanie wagi krawędzi"""
         return self.weight < other.weight
 
-    def set_queue(self, queue):
-        self.queue = queue
+
 
