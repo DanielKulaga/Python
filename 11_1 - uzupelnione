@@ -1,0 +1,69 @@
+import random
+import numpy as np
+
+
+def random_array(n):
+    """Losowa tablica"""
+    numbers = []
+    for i in range(n):
+        numbers = list(range(n))
+
+    random.shuffle(numbers)
+    return numbers
+
+
+
+def swap(L, left, right):
+    """Zamiana miejscami dwóch elementów w liscie."""
+    L[left], L[right] = L[right], L[left]
+
+
+
+def semi_sorted_array(n):
+    """Prawie posortowana tablica"""
+    result = []
+    for i in range(n):
+        result.append(i)
+    for i in range(n - 1):
+        check = random.uniform(0, 1)
+        if check > 0.8:
+            result[i], result[i + 1] = result[i + 1], result[i]
+    return result
+
+
+
+def reversed_semi_sorted_array(n):
+    """Prawie posortowana tablica w odwrotnej kolejności"""
+    numbers = semi_sorted_array(n)
+    numbers.reverse()
+    return numbers
+
+
+
+def random_gaussian_array(n):
+    """N liczb float w kolejności losowej o rozkładzie gaussowskim,"""
+    numbers = np.random.normal(0, 0.1, n)
+    return numbers
+
+
+
+def random_array_k(n):
+    """N liczb int w kolejności losowej, o wartościach powtarzających się, należących do zbioru k elementowego (k < N, np. k*k = N)."""
+    k = np.sqrt(n)
+    k = int(k)
+    k_array = random_array(k)
+    numbers = []
+
+    for i in range(n):
+        numbers.append(k_array[random.randint(0, k-1)])
+    return numbers
+
+
+if __name__ == "__main__":
+
+    print(random_array(10))
+    print(semi_sorted_array(8))
+    print(random_gaussian_array(10))
+    print(random_array_k(20))
+    print(reversed_semi_sorted_array(8))
+
